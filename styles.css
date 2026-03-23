@@ -37,6 +37,42 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 14px;
+}
+
+.site-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.site-footer-link {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 2px solid #2E9DF7;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #FFC907 0%, #f0bc00 100%);
+    color: #10151a;
+    text-decoration: none;
+    text-transform: lowercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 0 8px 20px rgba(46, 157, 247, 0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.site-footer-link:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.03);
+    box-shadow: 0 12px 26px rgba(46, 157, 247, 0.28);
+}
+
+.site-footer-link:focus {
+    outline: 2px solid #8BD1CB;
+    outline-offset: 2px;
 }
 
 #game-hud {
@@ -60,7 +96,7 @@ body {
     width: 800px;
     height: 600px;
     background: linear-gradient(to bottom, #1e1b07, #3a3210, #2b2809);
-    border: 3px solid #2E9DF7;
+    border: none;
     border-radius: 8px;
     position: relative;
     overflow: hidden;
@@ -73,6 +109,17 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 15;
+}
+
+.overlay-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 28px;
+    background: rgba(0, 0, 0, 0.58);
+    border: 2px solid rgba(46, 157, 247, 0.45);
+    border-radius: 10px;
 }
 
 #start-overlay.hidden {
@@ -97,6 +144,35 @@ body {
     background-color: #e6b400;
 }
 
+.mode-label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    color: #8BD1CB;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+}
+
+.mode-select {
+    width: 220px;
+    padding: 10px 12px;
+    border: 2px solid #2E9DF7;
+    border-radius: 6px;
+    background-color: #0f1315;
+    color: #FFC907;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.mode-select:focus {
+    outline: 2px solid #8BD1CB;
+    outline-offset: 1px;
+}
+
 .score,
 .lives,
 .highscore-hud {
@@ -105,6 +181,45 @@ body {
     color: #FFC907;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+}
+
+.milestone-message {
+    min-height: 20px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #8BD1CB;
+    text-align: center;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.milestone-message.visible {
+    opacity: 1;
+}
+
+#score.score-glow {
+    animation: scoreGlowPulse 0.55s ease;
+}
+
+@keyframes scoreGlowPulse {
+    0% {
+        color: #FFC907;
+        text-shadow: none;
+        transform: scale(1);
+    }
+    35% {
+        color: #ffffff;
+        text-shadow: 0 0 8px #FFC907, 0 0 16px #2E9DF7;
+        transform: scale(1.2);
+    }
+    100% {
+        color: #FFC907;
+        text-shadow: none;
+        transform: scale(1);
+    }
 }
 
 #water-can {
@@ -205,7 +320,7 @@ body {
     color: #8BD1CB;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 32px;
+    margin-bottom: 18px;
 }
 
 #reset-btn {
@@ -221,6 +336,7 @@ body {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     transition: background-color 0.15s, color 0.15s;
+    margin-top: 24px;
 }
 
 #reset-btn:hover {
@@ -239,8 +355,6 @@ body {
     animation: dropFall linear forwards;
     transform-origin: center;
     cursor: pointer;
-    padding: 15px;  /* Add padding for larger click area */
-    margin: -15px;  /* Offset padding to maintain visual size */
     transition: transform 0.1s ease;  /* Smooth hover effect */
 }
 
@@ -259,9 +373,40 @@ body {
     animation: dropFall linear forwards;
     transform-origin: center;
     cursor: pointer;
-    padding: 15px;  /* Add padding for larger click area */
-    margin: -15px;  /* Offset padding to maintain visual size */
     transition: transform 0.1s ease;  /* Smooth hover effect */
+}
+
+.water-drop-powerup {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.55);
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+    animation: dropFall linear forwards;
+    transform-origin: center;
+}
+
+.water-drop-powerup-shield {
+    background: radial-gradient(circle at 30% 30%, #8BD1CB, #2E9DF7 70%);
+}
+
+.water-drop-powerup-slow {
+    background: radial-gradient(circle at 30% 30%, #f5e1a1, #FF902A 70%);
+}
+
+.water-drop-powerup-double {
+    background: radial-gradient(circle at 30% 30%, #f9f08b, #4FCB53 70%);
+    font-size: 18px;
 }
 
 .game-title {
@@ -294,5 +439,11 @@ body {
 
     #game-container {
         height: 70vh;
+    }
+
+    .site-footer-link {
+        width: 100%;
+        text-align: center;
+        max-width: 95vw;
     }
 }

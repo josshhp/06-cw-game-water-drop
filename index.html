@@ -17,6 +17,7 @@
                     <div class="highscore-hud">High Score: <span id="high-score-hud">0</span></div>
                     <div class="lives">Lives: <span id="lives">3</span></div>
                 </div>
+                <div id="milestone-message" class="milestone-message" aria-live="polite"></div>
             </div>
 
             <div id="water-can" aria-label="Water can catcher"></div>
@@ -24,7 +25,15 @@
             <span id="time" style="display:none">0</span>
 
             <div id="start-overlay">
-                <button id="start-btn">Start Game</button>
+                <div class="overlay-controls">
+                    <label class="mode-label" for="mode-select-start">Difficulty</label>
+                    <select id="mode-select-start" class="mode-select" aria-label="Select difficulty">
+                        <option value="easy" selected>Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                    <button id="start-btn">Start Game</button>
+                </div>
             </div>
 
             <div id="game-over-overlay" class="hidden">
@@ -33,10 +42,27 @@
                     <h2 id="game-over-title">Try Again</h2>
                     <p class="result-score">Score: <span id="final-score">0</span></p>
                     <p class="result-highscore">Highscore: <span id="high-score">0</span></p>
+                    <label class="mode-label" for="mode-select-end">Difficulty</label>
+                    <select id="mode-select-end" class="mode-select" aria-label="Select difficulty">
+                        <option value="easy" selected>Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
                     <button id="reset-btn">Reset</button>
                 </div>
             </div>
         </div>
+
+        <footer class="site-footer" aria-label="charity water link">
+            <a
+                class="site-footer-link"
+                href="https://www.charitywater.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Support charity: water
+            </a>
+        </footer>
     </div>
 
     <script src="script.js"></script>
