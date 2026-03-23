@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Drop Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div id="game-container">
+
+            <div id="game-hud">
+                <h1 class="game-title">charity: water</h1>
+                <div class="score-panel">
+                    <div class="score">Score: <span id="score">0</span></div>
+                    <div class="highscore-hud">High Score: <span id="high-score-hud">0</span></div>
+                    <div class="lives">Lives: <span id="lives">3</span></div>
+                </div>
+            </div>
+
+            <div id="water-can" aria-label="Water can catcher"></div>
+            <canvas id="confetti-canvas"></canvas>
+            <span id="time" style="display:none">0</span>
+
+            <div id="start-overlay">
+                <button id="start-btn">Start Game</button>
+            </div>
+
+            <div id="game-over-overlay" class="hidden">
+                <div id="game-over-box">
+                    <div id="new-highscore-banner" class="hidden">🎉 New High Score! 🎉</div>
+                    <h2 id="game-over-title">Try Again</h2>
+                    <p class="result-score">Score: <span id="final-score">0</span></p>
+                    <p class="result-highscore">Highscore: <span id="high-score">0</span></p>
+                    <button id="reset-btn">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

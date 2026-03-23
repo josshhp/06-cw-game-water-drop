@@ -1,0 +1,298 @@
+/* Charity: water Brand Colors & Fonts
+
+Primary Colors:
+- Yellow:     #FFC907
+- Blue:       #2E9DF7
+
+Secondary Colors:
+- Light Blue: #8BD1CB
+- Green:      #4FCB53
+- Orange:     #FF902A
+- Red:        #F5402C
+- Dark Green: #159A48
+- Pink:       #F16061
+
+Fonts:
+- Proxima Nova
+- Avenir
+
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0d0c04;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.game-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#game-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 14px 24px 12px;
+    background: rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(46, 157, 247, 0.5);
+}
+
+.score-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#game-container {
+    width: 800px;
+    height: 600px;
+    background: linear-gradient(to bottom, #1e1b07, #3a3210, #2b2809);
+    border: 3px solid #2E9DF7;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+#start-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 15;
+}
+
+#start-overlay.hidden {
+    display: none;
+}
+
+#start-btn {
+    padding: 14px 44px;
+    background-color: #FFC907;
+    color: #131313;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+#start-btn:hover {
+    background-color: #e6b400;
+}
+
+.score,
+.lives,
+.highscore-hud {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFC907;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+#water-can {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 110px;
+    background-image: url("img/water-can-transparent.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 5;
+    pointer-events: auto;
+    cursor: grab;
+}
+
+#water-can.dragging {
+    cursor: grabbing;
+}
+
+#game-over-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.72);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+#game-over-overlay.hidden {
+    display: none;
+}
+
+#game-over-box {
+    background: linear-gradient(160deg, #1e1b07, #2b2809);
+    border: 2px solid #2E9DF7;
+    border-radius: 10px;
+    padding: 40px 50px;
+    text-align: center;
+    box-shadow: 0 0 32px rgba(46, 157, 247, 0.25);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#confetti-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 19;
+}
+
+#new-highscore-banner {
+    background: linear-gradient(90deg, #FFC907, #FF902A);
+    color: #131313;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-bottom: 14px;
+    animation: bannerPop 0.4s ease;
+}
+
+#new-highscore-banner.hidden {
+    display: none;
+}
+
+@keyframes bannerPop {
+    from { transform: scale(0.6); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+}
+
+#game-over-box h2 {
+    font-size: 36px;
+    color: #FFC907;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.result-score {
+    font-size: 22px;
+    font-weight: bold;
+    color: #FFC907;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.result-highscore {
+    font-size: 16px;
+    color: #8BD1CB;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+}
+
+#reset-btn {
+    padding: 12px 36px;
+    background-color: transparent;
+    color: #FFC907;
+    border: 2px solid #FFC907;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+#reset-btn:hover {
+    background-color: #FFC907;
+    color: #131313;
+}
+
+.water-drop-blue {
+    position: absolute;
+    width: 160px;  /* increased from 40px */
+    height: 160px; /* increased from 40px */
+    background-image: url("img/Waterdrop-blue.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: dropFall linear forwards;
+    transform-origin: center;
+    cursor: pointer;
+    padding: 15px;  /* Add padding for larger click area */
+    margin: -15px;  /* Offset padding to maintain visual size */
+    transition: transform 0.1s ease;  /* Smooth hover effect */
+}
+
+.water-drop-blue:hover {
+    transform: scale(1.1);  /* Slight grow effect on hover */
+}
+
+.water-drop-brown {
+    position: absolute;
+    width: 160px;  /* increased from 40px */
+    height: 160px; /* increased from 40px */
+    background-image: url("img/Waterdrop-brown.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: dropFall linear forwards;
+    transform-origin: center;
+    cursor: pointer;
+    padding: 15px;  /* Add padding for larger click area */
+    margin: -15px;  /* Offset padding to maintain visual size */
+    transition: transform 0.1s ease;  /* Smooth hover effect */
+}
+
+.game-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFC907;
+    letter-spacing: 0.38em;
+    text-align: center;
+    text-transform: lowercase;
+    margin-bottom: 10px;
+}
+
+.game-tagline {
+    display: none;
+}
+
+@keyframes dropFall {
+    from {
+        transform: translateY(-20px);
+    }
+    to {
+        transform: translateY(600px);
+    }
+}
+
+@media (max-width: 850px) {
+    .game-wrapper, #game-container {
+        width: 95vw;
+    }
+
+    #game-container {
+        height: 70vh;
+    }
+}
